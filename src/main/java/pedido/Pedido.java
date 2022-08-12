@@ -1,12 +1,15 @@
 package pedido;
 
+
+import ingredientes.Ingrediente;
+
 import java.util.ArrayList;
 
 public class Pedido{
 
-    private int id;
-    private  ArrayList<ItemPedido> itens;
-    private Cliente cliente;
+    private final int id;
+    private final ArrayList<ItemPedido> itens;
+    private final Cliente cliente;
 
     public Pedido(int id, ArrayList<ItemPedido> itens,Cliente cliente){
         this.id = id;
@@ -26,28 +29,59 @@ public class Pedido{
         return this.cliente;
     }
 
-    public double calcularTotal(Cardapio cardapio){
-        double total= 0;
-        //TODO
-        return total;
-    }
+    public boolean calcularTotal(Cardapio cardapio){
+        double total = 0;
+        for (ItemPedido itemPedido : itens) {
+            total += itemPedido.getShake().getTipoTamanho().atualizaValorTamanho(cardapio.buscarPreco(itemPedido.getShake().getBase())) * itemPedido.getQuantidade();
+            for (Ingrediente adicional : itemPedido.getShake().getAdicionais()) {
+                total += cardapio.buscarPreco(adicional) * itemPedido.getQuantidade();
+            }
+    };
 
-    public void adicionarItemPedido(ItemPedido itemPedidoAdicionado){
-        //TODO
-    }
+        public void adicionarItemPedido(ItemPedido itemPedidoAdicionado) {
+            sortAdicionais(itemPedidoAdicionado);
+            boolean added = false;
+            for (ItemPedido item : itens) {
+                if (!added) {
+                    if (item.getShake().equals(itemPedidoAdicionado.getShake())) {
+                        item.setQuantidade(item.getQuantidade() + itemPedidoAdicionado.getQuantidade());
+                        added = true;
+                    }
+                }
+            }
 
-    public boolean removeItemPedido(ItemPedido itemPedidoRemovido) {
-        //substitua o true por uma condição
-        if (true) {
-            //TODO
-        } else {
-            throw new IllegalArgumentException("Item nao existe no pedido.");
+            if (!added) {
+                itens.add(itemPedidoAdicionado);
+            }
         }
-        return false;
-    }
 
-    @Override
-    public String toString() {
-        return this.itens + " - " + this.cliente;
-    }
+        public boolean removeItemPedido(ItemPedido itemPedidoRemovido) {
+            sortAdicionais(itemPedidoRemovido);
+            ItemPedido itemToRemove = null;
+            boolean removed = false;
+            for (ItemPedido item : itens) {
+                if (!removed) {
+                    if (item.getShake().equals(itemPedidoRemovido.getShake())) {
+                        if (item.getQuantidade() == 1) {
+                            itemToRemove = item;
+                            removed = true;
+                        } else {
+                            item.setQuantidade(item.getQuantidade() - 1);
+                            removed = true;
+                        }
+                    }
+                }
+            }
+            if (itemToRemove != null)
+                itens.remove(itemToRemove);
+            if (!removed)
+                throw new IllegalArgumentException("Item nao existe no pedido.");
+            return false;
+        }
+
+
+        @Override
+        public String toString() {
+            return this.itens + " " + this.cliente;
+        }
 }

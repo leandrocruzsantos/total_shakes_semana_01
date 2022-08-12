@@ -12,6 +12,7 @@ public class Base implements Ingrediente,Comparable<Ingrediente>{
         return this.tipoBase;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

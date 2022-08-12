@@ -1,5 +1,7 @@
 package ingredientes;
 
 public enum TipoBase {
-    Iorgute,Sorvete,Leite;
+    IORGUTE,
+    SORVETE,
+    LEITE
 }

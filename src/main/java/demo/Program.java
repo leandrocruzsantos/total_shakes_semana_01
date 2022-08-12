@@ -16,12 +16,12 @@ public class Program {
         Cliente cliente = new Cliente(1,"Pedro","pedro@email.com");
         Cardapio cardapio = new Cardapio();
 
-        Base sorvete = new Base(TipoBase.Sorvete);
-        Base iogurte = new Base(TipoBase.Iorgute);
-        Fruta banana = new Fruta(TipoFruta.Banana);
-        Fruta morango = new Fruta(TipoFruta.Morango);
-        Topping mel = new Topping(TipoTopping.Mel);
-        Topping aveia = new Topping(TipoTopping.Aveia);
+        Base sorvete = new Base(TipoBase.SORVETE);
+        Base iogurte = new Base(TipoBase.IORGUTE);
+        Fruta banana = new Fruta(TipoFruta.BANANA);
+        Fruta morango = new Fruta(TipoFruta.MORANGO);
+        Topping mel = new Topping(TipoTopping.MEL);
+        Topping aveia = new Topping(TipoTopping.AVEIA);
 
         cardapio.adicionarIngrediente(sorvete,10.0);
         cardapio.adicionarIngrediente(iogurte,8.0);
@@ -30,7 +30,7 @@ public class Program {
         cardapio.adicionarIngrediente(mel,1.0);
         cardapio.adicionarIngrediente(aveia, 3.0);
 
-        Shake shake1 = new Shake(sorvete,banana,mel, TipoTamanho.P);
+        Shake shake1 = new Shake(sorvete, banana, mel, new ArrayList<>() ,TipoTamanho.P);
 
         ItemPedido itemPedido1 = new ItemPedido(shake1,1);
         Pedido pedido1 = new Pedido(1, new ArrayList<>(List.of(itemPedido1)),cliente);
