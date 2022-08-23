@@ -13,46 +13,46 @@ public class Cliente implements Serializable {
         this.email = email;
     }
 
-    public void serializarCliente(){
+    public void serializarCliente() {
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
 
-        try{
+        try {
             fos = new FileOutputStream("Cliente-" + this.id + ".txt");
             oos = new ObjectOutputStream(fos);
             oos.writeObject(this);
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Nao foi possivel serializar");
-        }finally{
-            if(oos != null){
-                try{
+        } finally {
+            if (oos != null) {
+                try {
                     oos.close();
-                }catch(IOException e){
+                } catch (IOException e) {
                     System.out.println("Nao foi possivel fechar o arquivo");
                 }
             }
         }
     }
 
-    public static Cliente desserializarCliente(int id){
+    public static Cliente desserializarCliente(int id) {
         FileInputStream fis = null;
         ObjectInputStream ois = null;
 
-        try{
+        try {
             fis = new FileInputStream("Cliente-" + id + ".txt");
             ois = new ObjectInputStream(fis);
 
             @SuppressWarnings("unchecked") Cliente cliente = (Cliente) ois.readObject();
 
             return cliente;
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Nao foi possivel desserializar");
             return null;
-        }finally{
-            if(ois != null){
-                try{
+        } finally {
+            if (ois != null) {
+                try {
                     ois.close();
-                }catch(IOException e){
+                } catch (IOException e) {
                     System.out.println("Nao foi possivel fechar o arquivo");
                 }
             }

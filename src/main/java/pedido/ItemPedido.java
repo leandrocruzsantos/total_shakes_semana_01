@@ -1,6 +1,7 @@
 package pedido;
 
 import produto.Shake;
+
 import java.util.Objects;
 
 public class ItemPedido {
@@ -24,7 +25,6 @@ public class ItemPedido {
     public int hashCode() {
         return Objects.hash(shake, quantidade);
     }
-
 
 
     public Shake getShake() {

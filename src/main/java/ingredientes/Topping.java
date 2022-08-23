@@ -1,14 +1,14 @@
 package ingredientes;
 
 
-public class Topping implements Adicional,Comparable<Ingrediente> {
+public class Topping implements Adicional, Comparable<Ingrediente> {
     private TipoTopping tipoTopping;
 
     public Topping(TipoTopping tipoTopping) {
         this.tipoTopping = tipoTopping;
     }
 
-    public TipoTopping getTipoTopping(){
+    public TipoTopping getTipoTopping() {
         return this.tipoTopping;
     }
 

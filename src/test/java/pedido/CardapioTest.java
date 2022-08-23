@@ -15,12 +15,12 @@ public class CardapioTest {
     Cardapio cardapio;
 
     @BeforeAll
-    void setup(){
+    void setup() {
         cardapio = new Cardapio();
     }
 
     @Test
-    void test_adicionar_ingredientes_properly(){
+    void test_adicionar_ingredientes_properly() {
         int contator = 0;
         Base base = new Base(TipoBase.IORGUTE);
         Fruta fruta = new Fruta(TipoFruta.MORANGO);
@@ -32,7 +32,7 @@ public class CardapioTest {
 
         assertEquals(3, cardapio.getPrecos().size());
 
-        for (Map.Entry<Ingrediente,Double> pair : cardapio.getPrecos().entrySet()) {
+        for (Map.Entry<Ingrediente, Double> pair : cardapio.getPrecos().entrySet()) {
             if (contator == 0) {
                 assertEquals(new Base(TipoBase.IORGUTE), pair.getKey());
                 assertEquals(1.0, pair.getValue());
@@ -50,7 +50,7 @@ public class CardapioTest {
     }
 
     @Test
-    void test_adicionar_ingredientes_exception_precoInvalido(){
+    void test_adicionar_ingredientes_exception_precoInvalido() {
         Base base = new Base(TipoBase.IORGUTE);
         Fruta fruta = new Fruta(TipoFruta.MORANGO);
         try {
@@ -71,7 +71,7 @@ public class CardapioTest {
     }
 
     @Test
-    void test_atualizar_ingredientes_properly(){
+    void test_atualizar_ingredientes_properly() {
         Base base = new Base(TipoBase.IORGUTE);
         Fruta fruta = new Fruta(TipoFruta.MORANGO);
         Topping topping = new Topping(TipoTopping.MEL);
@@ -89,7 +89,7 @@ public class CardapioTest {
     }
 
     @Test
-    void test_atualizar_ingredientes_exception_precoInvalido(){
+    void test_atualizar_ingredientes_exception_precoInvalido() {
         Base base = new Base(TipoBase.IORGUTE);
         Fruta fruta = new Fruta(TipoFruta.MORANGO);
 
@@ -114,7 +114,7 @@ public class CardapioTest {
     }
 
     @Test
-    void test_atualizar_ingredientes_exception_ingredienteInexistente(){
+    void test_atualizar_ingredientes_exception_ingredienteInexistente() {
         Base base = new Base(TipoBase.IORGUTE);
         Fruta fruta = new Fruta(TipoFruta.MORANGO);
         Topping topping = new Topping(TipoTopping.AVEIA);
@@ -133,7 +133,7 @@ public class CardapioTest {
     }
 
     @Test
-    void test_remover_ingredientes_properly(){
+    void test_remover_ingredientes_properly() {
         int contator = 0;
         Base base = new Base(TipoBase.IORGUTE);
         Fruta fruta = new Fruta(TipoFruta.MORANGO);
@@ -147,7 +147,7 @@ public class CardapioTest {
 
         assertEquals(2, cardapio.getPrecos().size());
 
-        for (Map.Entry<Ingrediente,Double> pair : cardapio.getPrecos().entrySet()) {
+        for (Map.Entry<Ingrediente, Double> pair : cardapio.getPrecos().entrySet()) {
             if (contator == 0) {
                 assertEquals(new Topping(TipoTopping.MEL), pair.getKey());
                 assertEquals(10.0, pair.getValue());
@@ -161,7 +161,7 @@ public class CardapioTest {
     }
 
     @Test
-    void test_remover_ingredientes_exception_ingredienteInexistente(){
+    void test_remover_ingredientes_exception_ingredienteInexistente() {
         Base base = new Base(TipoBase.IORGUTE);
 
         cardapio.adicionarIngrediente(base, 1.0);
@@ -176,7 +176,7 @@ public class CardapioTest {
     }
 
     @Test
-    void test_buscar_ingrediente_properly(){
+    void test_buscar_ingrediente_properly() {
         Base base = new Base(TipoBase.IORGUTE);
 
         cardapio.adicionarIngrediente(base, 1.0);
@@ -185,7 +185,7 @@ public class CardapioTest {
     }
 
     @Test
-    void test_buscar_ingrediente_exception_ingredienteInexistente(){
+    void test_buscar_ingrediente_exception_ingredienteInexistente() {
         Base base = new Base(TipoBase.IORGUTE);
 
         cardapio.adicionarIngrediente(base, 1.0);

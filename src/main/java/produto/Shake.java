@@ -72,6 +72,7 @@ public class Shake {
             }
             return cp.isEmpty();
         }
+
         return false;
     }
 

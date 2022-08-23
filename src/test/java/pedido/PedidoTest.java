@@ -15,13 +15,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class PedidoTest{
+public class PedidoTest {
 
     Pedido pedido;
     Cardapio cardapio;
 
     @BeforeAll
-    void setup(){
+    void setup() {
         cardapio = new Cardapio();
         cardapio.adicionarIngrediente(new Base(TipoBase.IORGUTE), 10.0);
         cardapio.adicionarIngrediente(new Base(TipoBase.SORVETE), 5.0);
@@ -33,7 +33,7 @@ public class PedidoTest{
     }
 
     @BeforeEach
-    void resetPedido(){
+    void resetPedido() {
         pedido = new Pedido(1, new ArrayList<>(), new Cliente(
                 1,
                 "Cliente Test",
@@ -42,7 +42,7 @@ public class PedidoTest{
     }
 
     @Test
-    void test_adicionarItemPedido_properly(){
+    void test_adicionarItemPedido_properly() {
         Shake shake = new Shake(new Base(TipoBase.SORVETE),
                 new Fruta(TipoFruta.MORANGO),
                 new Topping(TipoTopping.MEL),
@@ -68,7 +68,7 @@ public class PedidoTest{
     }
 
     @Test
-    void test_adicionarItemPedido_itemPedidoDuplicado(){
+    void test_adicionarItemPedido_itemPedidoDuplicado() {
         Shake shake = new Shake(new Base(TipoBase.SORVETE),
                 new Fruta(TipoFruta.MORANGO),
                 new Topping(TipoTopping.MEL),
@@ -93,7 +93,7 @@ public class PedidoTest{
     }
 
     @Test
-    void test_adicionarItemPedido_itemPedidoDiferentes(){
+    void test_adicionarItemPedido_itemPedidoDiferentes() {
         Shake shake = new Shake(new Base(TipoBase.SORVETE),
                 new Fruta(TipoFruta.MORANGO),
                 new Topping(TipoTopping.MEL),
@@ -120,7 +120,7 @@ public class PedidoTest{
     }
 
     @Test
-    void test_removerItemPedido_properly(){
+    void test_removerItemPedido_properly() {
         Shake shake = new Shake(new Base(TipoBase.SORVETE),
                 new Fruta(TipoFruta.MORANGO),
                 new Topping(TipoTopping.MEL),
@@ -137,7 +137,7 @@ public class PedidoTest{
     }
 
     @Test
-    void test_removerItemPedido_quantidadeMaiorQue1(){
+    void test_removerItemPedido_quantidadeMaiorQue1() {
         Shake shake = new Shake(new Base(TipoBase.SORVETE),
                 new Fruta(TipoFruta.MORANGO),
                 new Topping(TipoTopping.MEL),
@@ -163,7 +163,7 @@ public class PedidoTest{
     }
 
     @Test
-    void test_removerItemPedido_quantidadeIgualA1(){
+    void test_removerItemPedido_quantidadeIgualA1() {
         Shake shake = new Shake(new Base(TipoBase.SORVETE),
                 new Fruta(TipoFruta.MORANGO),
                 new Topping(TipoTopping.MEL),
@@ -188,7 +188,7 @@ public class PedidoTest{
     }
 
     @Test
-    void test_removerItemPedido_exception_itemNaoExiste(){
+    void test_removerItemPedido_exception_itemNaoExiste() {
         Shake shake = new Shake(new Base(TipoBase.SORVETE),
                 new Fruta(TipoFruta.MORANGO),
                 new Topping(TipoTopping.MEL),
@@ -208,17 +208,17 @@ public class PedidoTest{
 
         pedido.adicionarItemPedido(itemPedido);
 
-        try{
+        try {
             pedido.removeItemPedido(itemPedidoRemovido);
             fail("Excecao nao encontrada.");
-        }catch(Throwable e){
+        } catch (Throwable e) {
             assertEquals("Item nao existe no pedido.", e.getMessage());
             assertEquals(IllegalArgumentException.class, e.getClass());
         }
     }
 
     @Test
-    void test_calcularPedido_comAdicional_properly(){
+    void test_calcularPedido_comAdicional_properly() {
         Shake shake1 = new Shake(new Base(TipoBase.IORGUTE),
                 new Fruta(TipoFruta.BANANA),
                 new Topping(TipoTopping.AVEIA),
@@ -241,7 +241,7 @@ public class PedidoTest{
     }
 
     @Test
-    void test_calcularPedido_semAdicional_properly(){
+    void test_calcularPedido_semAdicional_properly() {
         Shake shake1 = new Shake(new Base(TipoBase.IORGUTE),
                 new Fruta(TipoFruta.BANANA),
                 new Topping(TipoTopping.AVEIA),
